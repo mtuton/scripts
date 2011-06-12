@@ -1,4 +1,6 @@
 #!/bin/sh
 
-cd froyo/
+export KBUILD_BUILD_VERSION="v06.4"
+
+cd linux_gt-i9000/
 ./scripts/build_kernel.sh
