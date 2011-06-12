@@ -1,0 +1,1 @@
+arm-none-linux-gnueabi-objcopy --strip-unneeded ext4.ko ext4-stripped.ko
