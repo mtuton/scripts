@@ -27,6 +27,8 @@ echo "Bullding kernel (stage 1)"
 if ! build_kernel; then
 	echo "Failed to compile kernel"
 	exit 1
+else
+	cp -v $KERNEL_DIR/arch/arm/boot/zImage $KERNEL_DIR/..
 fi
 
 # copy compiled modules into initramfs
