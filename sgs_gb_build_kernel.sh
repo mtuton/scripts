@@ -9,9 +9,16 @@ export KBUILD_BUILD_VERSION="GB-v00.0"
 export KERNEL_DIR="linux_gt-i9000-gb"
 export INITRAMFS="mic-initramfs-gb/full-uncompressed"
 
+fix_initramfs_permissions()
+{
+	chmod 755 $INITRAMFS
+	find $INITRAMFS -perm 600 -exec chmod 644 {} \;
+	find $INITRAMFS -perm 700 -exec chmod 755 {} \;
+}
+
 build_kernel()
 {
-	(cd $KERNEL_DIR; make -j4)
+	(cd $KERNEL_DIR; nice -n 20 make -j8)
 }
 
 update_initramfs_modules()
@@ -23,11 +30,20 @@ update_initramfs_modules()
 	fi
 }
 
+# remove any existing kernels
+rm -f $KERNEL_DIR/zImage
+
+# ensure that the initramfs permissions are correct before building the kernel
+#   incorrect permissions can result in a boot loop or failure to load drivers
+fix_initramfs_permissions
+
 # first build (build everything)
 echo "Bullding kernel (stage 1)"
 if ! build_kernel; then
 	echo "Failed to compile kernel"
 	exit 1
+else
+	cp -v $KERNEL_DIR/arch/arm/boot/zImage $KERNEL_DIR
 fi
 
 # copy compiled modules into initramfs
