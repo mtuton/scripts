@@ -1,2 +1,2 @@
 #!/bin/sh
-heimdall flash --kernel froyo/Kernel/arch/arm/boot/zImage
+heimdall flash --kernel linux_gt-i9000/Kernel/arch/arm/boot/zImage
