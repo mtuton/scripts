@@ -4,9 +4,9 @@
 #export CROSS_COMPILE=/opt/toolchains/arm-2009q3/bin/arm-none-linux-gnueabi-
 
 # export LOCALVERSION="-I9000XWJVP-CL118186"
-#export KBUILD_BUILD_VERSION="v06.5"
-export KBUILD_BUILD_VERSION="v06.5.1"
 #export KBUILD_BUILD_VERSION="v06.6"
+#export KBUILD_BUILD_VERSION="v06.6.1"
+export KBUILD_BUILD_VERSION="v06.6.2"
 
 export KERNEL_DIR="linux_gt-i9000/Kernel"
 export INITRAMFS="mic-initramfs/full-uncompressed"
