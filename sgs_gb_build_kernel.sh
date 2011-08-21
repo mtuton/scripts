@@ -3,7 +3,8 @@
 export ARCH=arm
 export CROSS_COMPILE=/opt/toolchains/arm-2009q3/bin/arm-none-linux-gnueabi-
 
-export LOCALVERSION="-I9000XWJVP-CL118186"
+#export LOCALVERSION="-I9000XWJVQ-CL118186"
+export LOCALVERSION="-I9000XWJVQ-CL281085"
 export KBUILD_BUILD_VERSION="GB-v00.0"
 
 export KERNEL_DIR="linux_gt-i9000-gb"
@@ -13,7 +14,9 @@ fix_initramfs_permissions()
 {
 	chmod 755 $INITRAMFS
 	find $INITRAMFS -perm 600 -exec chmod 644 {} \;
+	find $INITRAMFS -perm 400 -exec chmod 644 {} \;
 	find $INITRAMFS -perm 700 -exec chmod 755 {} \;
+	find $INITRAMFS -perm 500 -exec chmod 755 {} \;
 }
 
 build_kernel()
